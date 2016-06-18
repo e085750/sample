@@ -9,6 +9,7 @@
 #include <string.h>
 #include <sys/socket.h>
 #include <sys/types.h>
+#include <errno.h>
 
 int
 main()
@@ -52,7 +53,7 @@ main()
   int e = errno;
   if (ret == -1) {
     if (e != EALREADY)
-      printf("connection error. %d\n", e);
+      printf("connection error. [%d][%s]\n", e, strerror(e));
       printf("addr len %d\n",res->ai_addrlen);
       //return 0;
   }
