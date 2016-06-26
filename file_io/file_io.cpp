@@ -1,6 +1,7 @@
 #include <iostream> 
 #include <fstream>
 #include <string>
+#include <string.h>
 #include <iomanip>
 
 int
@@ -14,6 +15,8 @@ main (int args, char **argv)
 
   std::ifstream reading_file;
   reading_file.open(argv[1], std::ios::in);
+  std::ofstream writing_file;
+  writing_file.open(strcat(argv[1], "_hoge"), std::ios::out);
 
   std::string reading_line_buffer;
 
@@ -23,8 +26,8 @@ main (int args, char **argv)
   while (!reading_file.eof()) {
     // read by line
     std::getline(reading_file, reading_line_buffer);
-    std::cout << std::setw(5) << std::setfill('0') << i << " :" << reading_line_buffer << std::endl;
-    std::cout << std::setw(5) << i << " :" << reading_line_buffer << std::endl;
+    //std::cout << std::setw(5) << std::setfill('0') << i << " :" << reading_line_buffer << std::endl;
+    writing_file << std::setw(5) << std::setfill('0') << i << " :" << reading_line_buffer << std::endl;
     i++;
   }
   return 0;
